@@ -107,10 +107,7 @@ export class PuppeteerCoreModule
       async useFactory(browser: Browser) {
         return await browser.createIncognitoBrowserContext();
       },
-      inject: [
-        PUPPETEER_MODULE_OPTIONS,
-        getBrowserToken(puppeteerInstanceName),
-      ],
+      inject: [getBrowserToken(puppeteerInstanceName)],
     };
 
     const pageProvider = {
@@ -118,10 +115,7 @@ export class PuppeteerCoreModule
       async useFactory(context: BrowserContext) {
         return await context.newPage();
       },
-      inject: [
-        PUPPETEER_MODULE_OPTIONS,
-        getContextToken(puppeteerInstanceName),
-      ],
+      inject: [getContextToken(puppeteerInstanceName)],
     };
 
     const asyncProviders = this.createAsyncProviders(options);
